@@ -1,0 +1,31 @@
+.profile__btn-modify {
+  background-image: url(../../../images/profile-pen-btn-m.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 8px;
+  min-width: 18px;
+  min-height: 18px;
+  margin: auto;
+  margin-left: 10px;
+  margin-right: 0;
+  background-color: #000;
+  border-color: #FFF;
+  border: 1px solid #FFF;
+  cursor: pointer;
+  outline: transparent;
+}
+
+.profile__btn-modify:hover {
+  opacity: 0.6;
+  transition: all 1s;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__btn-modify {
+    min-width: 24px;
+    min-height: 24px;
+    margin-left: 19px;
+    margin-top: 15px;
+    background-size: 10px;
+  }
+}

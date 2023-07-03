@@ -1,0 +1,26 @@
+.header__burger-button {
+  width: 24px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: contain;
+  margin-right: 27px;
+  margin-bottom: 28px;
+  margin-top: 5px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  outline: transparent;
+  transition: all 0.3s;
+}
+
+.header__burger-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 425px) {
+  .header__burger-button {
+    display: none;
+  }
+}

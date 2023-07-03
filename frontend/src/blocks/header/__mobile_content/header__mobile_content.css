@@ -1,0 +1,5 @@
+.header__mobile_content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 27px;
+}

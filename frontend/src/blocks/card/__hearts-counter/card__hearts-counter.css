@@ -1,0 +1,11 @@
+.card__hearts-counter {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  margin: auto;
+  margin-left: 7px;
+  margin-top: 3px;
+}

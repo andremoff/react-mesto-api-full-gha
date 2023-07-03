@@ -1,0 +1,8 @@
+.popup__loader {
+  margin: auto;
+  background-image: url(https://media.tenor.com/37TOihe46BgAAAAi/now-loading-loading.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width: 232px;
+  min-height: 70px;
+}

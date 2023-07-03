@@ -1,0 +1,29 @@
+.popup__status-caption {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  background-color: transparent;
+  text-align: center;
+  min-width: 244px;
+  margin: 0;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media screen and (min-width: 475px) {
+  .popup__status-caption {
+    max-width: 348px;
+    margin-top: 32px;
+    margin-bottom: 65px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

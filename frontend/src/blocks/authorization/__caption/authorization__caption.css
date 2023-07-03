@@ -1,0 +1,26 @@
+.authorization__caption {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFF;
+  background-color: transparent;
+  text-align: center;
+  min-width: 260px;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0 0 12px 0;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media screen and (min-width: 475px) {
+  .authorization__caption {
+    min-width: 358px;
+    margin-top: 15px;
+  }
+}

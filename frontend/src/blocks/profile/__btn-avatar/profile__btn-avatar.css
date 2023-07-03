@@ -1,0 +1,24 @@
+.profile__btn-avatar {
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  max-width: 120px;
+  max-height: 120px;
+  margin: 4px auto;
+  padding: 0;
+  outline: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__btn-avatar {
+    margin-right: 26px;
+  }
+}
+
+.profile__btn-avatar:hover {
+  background-image: url(../../../images/avatar-pen-btn.svg);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: all 0.3s;
+  cursor: pointer;
+}

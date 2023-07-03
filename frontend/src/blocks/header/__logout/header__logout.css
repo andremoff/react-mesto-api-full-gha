@@ -1,0 +1,30 @@
+.header__logout {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #A9A9A9;
+  text-decoration: none;
+  margin: auto;
+  margin-top: 18px;
+  margin-bottom: 40px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media screen and (min-width: 425px) {
+  .header__logout {
+    margin-right: 27px;
+    margin-bottom: 19px;
+  }
+}
+
+@media screen and (min-width: 934px) {
+  .header__logout {
+    margin-right: 0;
+  }
+}

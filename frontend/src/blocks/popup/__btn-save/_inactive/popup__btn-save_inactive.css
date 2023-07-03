@@ -1,0 +1,11 @@
+.popup__btn-save_inactive {
+  background: #E5E5E5;
+  pointer-events: none;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: none;
+}

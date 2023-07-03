@@ -1,0 +1,7 @@
+.card__caption {
+  border-radius: 0 0 10px 10px;
+  background-color: #FFF;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}

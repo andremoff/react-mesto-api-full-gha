@@ -1,0 +1,26 @@
+.elements__list {
+  display: grid;
+  grid-template-columns: min-content;
+  grid-template-rows: repeat(1, min-content);
+  justify-content: center;
+  margin: 36px 0 0;
+  gap: 20px;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .elements__list {
+    margin-top: 47px;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, min-content);
+    gap: 17px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .elements__list {
+    grid-template-columns: repeat(3, min-content);
+    grid-template-rows: repeat(3, min-content);
+    gap: 20px 17px;
+  }
+}

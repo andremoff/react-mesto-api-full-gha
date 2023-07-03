@@ -1,0 +1,4 @@
+.card__heart-block {
+  display: flex;
+  flex-direction: column;
+}

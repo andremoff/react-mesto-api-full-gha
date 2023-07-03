@@ -1,0 +1,14 @@
+.profile__foto {
+  border-radius: 50%;
+  max-width: 120px;
+  min-height: 120px;
+  margin: 0;
+  position: relative;
+  background-position: center;
+  background-size: contain;
+  color: transparent;
+}
+
+.profile__foto:hover {
+  opacity: 0.2;
+}

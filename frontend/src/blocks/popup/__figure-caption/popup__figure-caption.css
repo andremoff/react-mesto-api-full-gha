@@ -1,0 +1,25 @@
+.popup__figure-caption {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFF;
+  min-width: 240px;
+  min-height: 12px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__figure-caption {
+    min-width: 433px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__figure-caption {
+    min-width: 816px;
+  }
+}

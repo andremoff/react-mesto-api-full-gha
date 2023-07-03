@@ -1,0 +1,21 @@
+.header {
+  min-width: 282px;
+  max-width: 880px;
+  margin-top: 0;
+  margin-bottom: 38px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  border-bottom: 1px;
+  border-style: solid;
+  border-color: rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (min-width: 425px) {
+  .header {
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}

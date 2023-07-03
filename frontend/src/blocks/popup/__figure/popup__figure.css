@@ -1,0 +1,19 @@
+.popup__figure {
+  max-width: 240px;
+  max-height: 321px;
+  margin: 0;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__figure {
+    max-width: 433px;
+    max-height: 562px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__figure {
+    max-width: 816px;
+  }
+}
