@@ -1,3 +1,4 @@
+// app.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -16,6 +17,7 @@ const auth = require('./middlewares/auth');
 const handleError = require('./middlewares/handleError');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/cors');
 
 const app = express();
 const PORT = 3000;
@@ -26,6 +28,7 @@ const limiter = rateLimit({
 });
 
 app.use(helmet());
+app.use(cors); // новый middleware
 app.use(limiter);
 app.use(session({
   secret: 'your_session_secret',
@@ -93,7 +96,9 @@ app.use((req, res, next) => {
 // Обработчик ошибок
 app.use(handleError);
 
-mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
-  .then(() => {
-    app.listen(PORT);
-  });
+setTimeout(() => {
+  mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
+    .then(() => {
+      app.listen(PORT);
+    });
+}, 10000);
