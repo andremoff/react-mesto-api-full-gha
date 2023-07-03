@@ -102,7 +102,11 @@ const createUser = async (req, res, next) => {
       avatar,
     });
 
-    const token = jwt.sign({ _id: user._id }, 'your_jwt_secret', { expiresIn: '7d' });
+    const { NODE_ENV, JWT_SECRET } = process.env;
+    const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+
+    const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '7d' });
+
     res.status(201).send({
       _id: user._id,
       email: user.email,
@@ -135,7 +139,10 @@ const login = async (req, res, next) => {
       return next(new UnauthenticatedError('Неправильные почта или пароль'));
     }
 
-    const token = jwt.sign({ _id: user._id }, 'your_jwt_secret', { expiresIn: '7d' });
+    const { NODE_ENV, JWT_SECRET } = process.env;
+    const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+
+    const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '7d' });
 
     return res
       .cookie('jwt', token, {
