@@ -73,16 +73,16 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+app.use(auth);
+
+app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
+
 // Обработка несовпадающих маршрутов (404 ошибка)
 app.use((req, res, next) => {
   const err = new NotFoundError('Запрашиваемый ресурс не найден');
   next(err);
 });
-
-app.use(auth);
-
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
 
 // Логгер ошибок
 app.use(errorLogger);
