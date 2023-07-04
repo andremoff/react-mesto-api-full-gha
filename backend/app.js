@@ -73,6 +73,12 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+// Обработка несовпадающих маршрутов (404 ошибка)
+app.use((req, res, next) => {
+  const err = new NotFoundError('Запрашиваемый ресурс не найден');
+  next(err);
+});
+
 app.use(auth);
 
 app.use('/users', usersRouter);
@@ -83,12 +89,6 @@ app.use(errorLogger);
 
 // Обработка ошибок celebrate/Joi
 app.use(errors());
-
-// Обработка несовпадающих маршрутов (404 ошибка)
-app.use((req, res, next) => {
-  const err = new NotFoundError('Запрашиваемый ресурс не найден');
-  next(err);
-});
 
 // Обработчик ошибок
 app.use(handleError);
