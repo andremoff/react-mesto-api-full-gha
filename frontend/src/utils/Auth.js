@@ -16,6 +16,7 @@ export function register(email, password) {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   })
     .then(response => handleResponse(response));
@@ -28,20 +29,21 @@ export function login(email, password) {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   })
     .then(response => handleResponse(response));
 }
 
 // Функция для проверки токена
-export function checkToken(token) {
+export function checkToken() {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
   })
     .then(response => handleResponse(response));
 }

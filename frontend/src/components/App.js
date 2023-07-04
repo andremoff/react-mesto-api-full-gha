@@ -38,46 +38,34 @@ function App() {
 
   //Проверяем токен и загружаем данные пользователя
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      checkToken(jwt)
-        .then((data) => {
-          if (data) {
-            setLoggedIn(true);
-            setCurrentUserEmail(data.data.email);
-            navigate('/');
-            return Promise.all([api.getUserInfo(), api.getInitialCards()]);
-          }
-        })
-        .then(([userData, initialCards]) => {
-          setCurrentUser(userData);
-          setCards(initialCards);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-          setIsCheckingToken(false);
-        });
-    } else {
-      setIsLoading(false);
-      setIsCheckingToken(false);
-    }
+    checkToken()
+      .then((data) => {
+        if (data) {
+          setLoggedIn(true);
+          setCurrentUserEmail(data.data.email);
+          navigate('/');
+          return Promise.all([api.getUserInfo(), api.getInitialCards()]);
+        }
+      })
+      .then(([userData, initialCards]) => {
+        setCurrentUser(userData);
+        setCards(initialCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsCheckingToken(false);
+      });
   }, [navigate]);
 
   // Обрабатывает вход в систему
   const handleLogin = (email, password) => {
     return login(email, password)
-      .then((data) => {
-        if (!data || data.statusCode === 400) {
-          throw new Error('Произошла ошибка при входе');
-        }
-        if (data.token) {
-          localStorage.setItem('jwt', data.token);
-          setCurrentUserEmail(email);
-          return Promise.all([api.getUserInfo(), api.getInitialCards()]);
-        }
+      .then(() => {
+        setCurrentUserEmail(email);
+        return Promise.all([api.getUserInfo(), api.getInitialCards()]);
       })
       .then(([userData, initialCards]) => {
         setCurrentUser({ ...userData });
@@ -88,11 +76,10 @@ function App() {
 
   // Обработчик выхода из системы
   const handleLogout = () => {
-    localStorage.removeItem('jwt');
     setLoggedIn(false);
     setCurrentUser({});
     setCurrentUserEmail('');
-    navigate('/signin', { replace: true });
+    navigate('/logout', { replace: true });
   };
 
   // Обработчик отправки формы регистрации

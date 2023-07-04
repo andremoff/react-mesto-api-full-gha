@@ -1,9 +1,7 @@
-// app.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const session = require('express-session');
 const escapeHtml = require('escape-html');
 const rateLimit = require('express-rate-limit');
 const { celebrate } = require('celebrate');
@@ -22,20 +20,14 @@ const cors = require('./middlewares/cors');
 const app = express();
 const PORT = 3000;
 
+app.use(cors);
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
 
 app.use(helmet());
-app.use(cors); // новый middleware
 app.use(limiter);
-app.use(session({
-  secret: 'your_session_secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -76,6 +68,11 @@ app.post('/signin', celebrate({ body: loginSchema }), (req, res, next) => {
   login(req, res, next, sanitizedData);
 });
 
+app.get('/logout', (req, res) => {
+  res.clearCookie('jwt');
+  res.redirect('/');
+});
+
 app.use(auth);
 
 app.use('/users', usersRouter);
@@ -96,9 +93,7 @@ app.use((req, res, next) => {
 // Обработчик ошибок
 app.use(handleError);
 
-setTimeout(() => {
-  mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
-    .then(() => {
-      app.listen(PORT);
-    });
-}, 10000);
+mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
+  .then(() => {
+    app.listen(PORT);
+  });
