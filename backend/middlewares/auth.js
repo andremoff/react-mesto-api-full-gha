@@ -10,8 +10,11 @@ module.exports = (req, res, next) => {
 
   let payload;
 
+  const { NODE_ENV, JWT_SECRET } = process.env;
+  const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+
   try {
-    payload = jwt.verify(token, 'your_jwt_secret');
+    payload = jwt.verify(token, secret);
   } catch (err) {
     throw new UnauthenticatedError('Необходима авторизация');
   }
