@@ -9,7 +9,7 @@ Cайт размещенный на [Яндекс.Облаке](https://https://
 
 ## Ссылки на проект
 
-IP: 51.250.65.3
+IP <51.250.65.3>
 
 Frontend https://mesto.andremoff.nomoreparties.sbs
 
