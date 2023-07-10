@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'https://api.mesto.andremoff.nomoreparties.sbs';
 
 // Функция для обработки ответа сервера
 function handleResponse(response) {

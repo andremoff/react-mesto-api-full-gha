@@ -89,7 +89,7 @@ class Api {
 
 // Подключение к серверу 
 export const api = new Api({
-  mainUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
+  mainUrl: 'https://api.mesto.andremoff.nomoreparties.sbs',
   headers: {
     'Content-Type': 'application/json'
   }

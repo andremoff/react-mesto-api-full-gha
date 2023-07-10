@@ -60,7 +60,11 @@ const updateUser = async (req, res, next) => {
     }
     res.json({ data: updatedUser });
   } catch (err) {
-    next(new BadRequestError('Ошибка при обновлении пользователя', err));
+    if (err.name === 'ValidationError') {
+      next(new BadRequestError('Переданы некорректные данные при обновлении пользователя'));
+    } else {
+      next(err);
+    }
   }
 };
 
@@ -76,7 +80,11 @@ const updateAvatar = async (req, res, next) => {
     const updatedUser = await user.save();
     res.json({ data: updatedUser });
   } catch (err) {
-    next(new BadRequestError('Ошибка при обновлении аватара пользователя', err));
+    if (err.name === 'ValidationError') {
+      next(new BadRequestError('Переданы некорректные данные при обновлении аватара пользователя'));
+    } else {
+      next(err);
+    }
   }
 };
 
@@ -85,43 +93,38 @@ const createUser = async (req, res, next) => {
   const {
     email, password, name, about, avatar,
   } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  try {
-    const existingUser = await User.findOne({ email });
+  return User.create({
+    email,
+    password: hashedPassword,
+    name,
+    about,
+    avatar,
+  })
+    .then((user) => {
+      const { NODE_ENV, JWT_SECRET } = process.env;
+      const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+      const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '7d' });
 
-    if (existingUser) {
-      throw new ConflictError('Пользователь с таким email уже существует');
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({
-      email,
-      password: hashedPassword,
-      name,
-      about,
-      avatar,
+      res.status(201).send({
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        token,
+      });
+    })
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким email уже существует'));
+      } else {
+        next(err);
+      }
     });
-
-    const { NODE_ENV, JWT_SECRET } = process.env;
-    const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
-
-    const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '7d' });
-
-    res.status(201).send({
-      _id: user._id,
-      email: user.email,
-      name: user.name,
-      about: user.about,
-      avatar: user.avatar,
-      token,
-    });
-  } catch (err) {
-    if (err instanceof ConflictError) {
-      next(err);
-    } else {
-      next(new BadRequestError('Ошибка при создании пользователя', err));
-    }
-  }
 };
 
 // Авторизация пользователя

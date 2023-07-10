@@ -1,7 +1,6 @@
 const Card = require('../models/card');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
-const ConflictError = require('../errors/ConflictError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
 // Получение всех карточек
@@ -24,8 +23,8 @@ const createCard = (req, res, next) => {
       res.status(201).json({ data: card });
     })
     .catch((err) => {
-      if (err.code === 11000) {
-        next(new ConflictError('Карточка с такими данными уже существует'));
+      if (err.name === 'ValidationError') {
+        next(new BadRequestError('Переданы некорректные данные при создании карточки'));
       } else {
         next(err);
       }
