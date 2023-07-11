@@ -90,7 +90,7 @@ class Api {
       credentials: 'include'
     })
       .then(this._checkResponse)
-      .then((data) => data); // изменено с data.data на data
+      .then((data) => data.data);
   }
 }
 
