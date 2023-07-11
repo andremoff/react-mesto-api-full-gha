@@ -8,7 +8,7 @@ class Api {
   async _checkResponse(res) {
     if (res.ok) {
       const data = await res.json();
-      return data;
+      return data.data;
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
@@ -19,8 +19,7 @@ class Api {
       headers: this._headers,
       credentials: 'include'
     })
-      .then((res) => this._checkResponse(res))
-      .then((data) => data.data);
+      .then((res) => this._checkResponse(res));
   }
 
   // Меняем профиль пользователя 
@@ -31,8 +30,7 @@ class Api {
       credentials: 'include',
       body: JSON.stringify({ name, about })
     })
-      .then(this._checkResponse)
-      .then(data => data.data);
+      .then(this._checkResponse);
   }
 
   // Меняем аватар 
@@ -45,8 +43,7 @@ class Api {
         avatar: inputValues.userAvatar
       })
     })
-      .then(this._checkResponse)
-      .then(data => data.data);
+      .then(this._checkResponse);
   }
 
   // Получаем готовые карточки с сервера 
@@ -55,8 +52,7 @@ class Api {
       headers: this._headers,
       credentials: 'include'
     })
-      .then(this._checkResponse)
-      .then(data => data.data);
+      .then(this._checkResponse);
   }
 
   // Добавляем карточку 
@@ -66,17 +62,6 @@ class Api {
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({ name, link })
-    })
-      .then(this._checkResponse)
-      .then((result) => result.data);
-  }
-
-  // Удаляем карточку
-  deleteCard(cardId) {
-    return fetch(`${this._mainUrl}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers,
-      credentials: 'include'
     })
       .then(this._checkResponse);
   }
