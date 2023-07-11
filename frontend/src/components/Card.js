@@ -8,7 +8,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const isOwn = card?.owner?._id === currentUser?._id;
 
   // Определяем лайк у карточки текущего пользователя
-  const isLiked = card?.likes?.some((i) => i._id === currentUser?._id) ?? false;
+  const isLiked = card?.likes.some((i) => i._id === currentUser?._id);
 
   // Кнопка лайка
   const cardLikeButton = `card__heart ${isLiked && 'card__heart_active'}`;
@@ -35,7 +35,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         <h2 className="card__title">{card?.name}</h2>
         <div className="card__heart-block">
           <button type="button" className={cardLikeButton} aria-label="лайк" onClick={handleLikeClick}></button>
-          <span className="card__hearts-counter">{card?.likes?.length ?? 0}</span>
+          <span className="card__hearts-counter">{card?.likes.length}</span>
         </div>
       </div>
       {isOwn && <button className="card__btn-delete" aria-label="удалить" onClick={handleDeleteClick}></button>}
