@@ -45,14 +45,15 @@ class Api {
       .then(this._checkResponse);
   }
 
-  // Получаем готовые карточки с сервера 
-  getInitialCards() {
-    return fetch(`${this._mainUrl}/cards`, {
-      headers: this._headers,
-      credentials: 'include'
-    })
-      .then(this._checkResponse);
-  }
+// Получаем готовые карточки с сервера 
+getInitialCards() {
+  return fetch(`${this._mainUrl}/cards`, {
+    headers: this._headers,
+    credentials: 'include'
+  })
+    .then(this._checkResponse)
+    .then(data => data.data);
+}
 
   // Добавляем карточку 
   addCard({ name, link }) {
