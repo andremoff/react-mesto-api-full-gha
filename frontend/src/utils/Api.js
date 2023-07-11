@@ -90,7 +90,6 @@ class Api {
       credentials: 'include'
     })
       .then(this._checkResponse)
-      .then((data) => data.data);
   }
 }
 

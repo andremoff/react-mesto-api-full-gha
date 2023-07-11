@@ -159,16 +159,15 @@ function App() {
 
   // Обработчик Лайков
   function handleCardLike(card) {
-    const isLiked = card.likes.some(user => user._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
     api.changeLikeCardStatus(card._id, isLiked)
-      .then((response) => {
-        const updatedCard = response.data;
-        setCards(state => state.map(c => c._id === card._id ? updatedCard : c));
+      .then(({ card: newCard }) => {
+        setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
       })
       .catch((err) => {
         console.log(err);
-      })
-  };
+      });
+  }
 
   // Обработчик данных пользователя
   function handleUpdateUser({ name, about }) {
