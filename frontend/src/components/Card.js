@@ -5,10 +5,10 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
   // Определяем владельца карточки
-  const isOwn = card?.owner === currentUser?._id;
+  const isOwn = card?.owner?._id === currentUser?._id;
 
   // Определяем лайк у карточки текущего пользователя
-  const isLiked = card?.likes?.some((like) => like === currentUser?._id) ?? false;
+  const isLiked = card.likes.some(user => user._id === currentUser._id);
 
   // Кнопка лайка
   const cardLikeButton = `card__heart ${isLiked && 'card__heart_active'}`;

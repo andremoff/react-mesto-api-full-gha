@@ -80,20 +80,11 @@ class Api {
       .then(this._checkResponse);
   }
 
-  // Добавление лайка карточке
-  likeCard(cardId) {
+  // Меняем статус лайка
+  changeLikeCardStatus(cardId, isLiked) {
+    const method = isLiked ? 'DELETE' : 'PUT';
     return fetch(`${this._mainUrl}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: this._headers,
-      credentials: 'include'
-    })
-      .then(this._checkResponse);
-  }
-
-  // Удаление лайка с карточки
-  dislikeCard(cardId) {
-    return fetch(`${this._mainUrl}/cards/${cardId}/likes`, {
-      method: 'DELETE',
+      method: method,
       headers: this._headers,
       credentials: 'include'
     })
