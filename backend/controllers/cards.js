@@ -48,7 +48,7 @@ const likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка с указанным ID не найдена');
       }
-      return res.json( card );
+      return res.json(card);
     })
     .catch(next);
 };
@@ -70,7 +70,7 @@ const dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка с указанным ID не найдена');
       }
-      return res.json( card );
+      return res.json(card);
     })
     .catch(next);
 };
