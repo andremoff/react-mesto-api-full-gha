@@ -160,9 +160,14 @@ function App() {
   // Обработчик Лайков
   function handleCardLike(card) {
     const isLiked = card.likes.some(user => user._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCardData) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCardData : c)));
-    });
+    api.changeLikeCardStatus(card._id, isLiked)
+      .then((response) => {
+        const updatedCard = response.data;
+        setCards(state => state.map(c => c._id === card._id ? updatedCard : c));
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе добавления/снятия лайка карточки в галерее: ${err}`);
+      })
   };
 
   // Обработчик данных пользователя
