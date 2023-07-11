@@ -40,7 +40,7 @@ const getCurrentUser = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError('Пользователь не найден');
     }
-    res.json({ data: user });
+    res.json({ data: { data: user } });
   } catch (err) {
     next(err);
   }
@@ -58,7 +58,7 @@ const updateUser = async (req, res, next) => {
     if (!updatedUser) {
       throw new NotFoundError('Пользователь не найден');
     }
-    res.json({ data: updatedUser });
+    res.json({ data: { data: updatedUser } });
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные при обновлении пользователя'));
@@ -78,7 +78,7 @@ const updateAvatar = async (req, res, next) => {
     }
     user.avatar = avatar;
     const updatedUser = await user.save();
-    res.json({ data: updatedUser });
+    res.json({ data: { data: updatedUser } });
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные при обновлении аватара пользователя'));

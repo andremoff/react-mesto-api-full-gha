@@ -34,7 +34,7 @@ const createCard = (req, res, next) => {
 // Добавление лайка карточке
 const likeCard = (req, res, next) => {
   const { cardId } = req.params;
-  console.log(`likeCard called with cardId: ${cardId}`);
+
   if (!cardId) {
     throw new BadRequestError('Необходимо указать ID карточки');
   }
@@ -56,7 +56,7 @@ const likeCard = (req, res, next) => {
 // Удаление лайка с карточки
 const dislikeCard = (req, res, next) => {
   const { cardId } = req.params;
-  console.log(`dislikeCard called with cardId: ${cardId}`);
+
   if (!cardId) {
     throw new BadRequestError('Необходимо указать ID карточки');
   }
