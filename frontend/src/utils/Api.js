@@ -67,7 +67,8 @@ class Api {
       credentials: 'include',
       body: JSON.stringify({ name, link })
     })
-      .then(this._checkResponse);
+      .then(this._checkResponse)
+      .then((result) => result.data);
   }
 
   // Удаляем карточку
