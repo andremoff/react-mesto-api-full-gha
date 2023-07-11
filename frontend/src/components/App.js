@@ -174,7 +174,7 @@ function App() {
     setIsLoading(true);
     api.setUserInfo({ name, about })
       .then((userData) => {
-        setCurrentUser({ ...currentUser, name: userData.name, about: userData.about });
+        setCurrentUser(userData);
         closeAllPopups();
       })
       .catch((err) => {

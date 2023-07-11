@@ -31,7 +31,8 @@ class Api {
       credentials: 'include',
       body: JSON.stringify({ name, about })
     })
-      .then(this._checkResponse);
+      .then(this._checkResponse)
+      .then(data => data.data);
   }
 
   // Меняем аватар 
