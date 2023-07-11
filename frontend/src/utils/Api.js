@@ -5,9 +5,10 @@ class Api {
   }
 
   // Проверяем ответ сервера 
-  _checkResponse(res) {
+  async _checkResponse(res) {
     if (res.ok) {
-      return res.json();
+      const data = await res.json();
+      return data;
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
@@ -18,7 +19,8 @@ class Api {
       headers: this._headers,
       credentials: 'include'
     })
-      .then(this._checkResponse);
+      .then((res) => this._checkResponse(res))
+      .then((data) => data.data);
   }
 
   // Меняем профиль пользователя 
@@ -45,15 +47,15 @@ class Api {
       .then(this._checkResponse);
   }
 
-// Получаем готовые карточки с сервера 
-getInitialCards() {
-  return fetch(`${this._mainUrl}/cards`, {
-    headers: this._headers,
-    credentials: 'include'
-  })
-    .then(this._checkResponse)
-    .then(data => data.data);
-}
+  // Получаем готовые карточки с сервера 
+  getInitialCards() {
+    return fetch(`${this._mainUrl}/cards`, {
+      headers: this._headers,
+      credentials: 'include'
+    })
+      .then(this._checkResponse)
+      .then(data => data.data);
+  }
 
   // Добавляем карточку 
   addCard({ name, link }) {
