@@ -45,7 +45,8 @@ class Api {
         avatar: inputValues.userAvatar
       })
     })
-      .then(this._checkResponse);
+      .then(this._checkResponse)
+      .then(data => data.data);
   }
 
   // Получаем готовые карточки с сервера 
