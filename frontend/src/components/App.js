@@ -160,8 +160,9 @@ function App() {
   // Обработчик Лайков
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const changeLike = isLiked ? api.dislikeCard(card._id) : api.likeCard(card._id);
 
-    api.changeLikeCardStatus(card._id, isLiked)
+    changeLike
       .then((newCard) => {
         setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
       })
