@@ -79,7 +79,7 @@ getInitialCards() {
   // Меняем статус лайка
   changeLikeCardStatus(cardId, isLiked) {
     const method = isLiked ? 'DELETE' : 'PUT';
-    return fetch(`${this._mainUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._mainUrl}/cards/${cardId}/likes`, {
       method: method,
       headers: this._headers,
       credentials: 'include'
