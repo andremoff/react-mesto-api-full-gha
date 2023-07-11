@@ -8,7 +8,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const isOwn = card?.owner?._id === currentUser?._id;
 
   // Определяем лайк у карточки текущего пользователя
-  const isLiked = card?.likes?.includes(currentUser?._id) ?? false;
+  const isLiked = card?.likes?.some((like) => like === currentUser?._id) ?? false;
 
   // Кнопка лайка
   const cardLikeButton = `card__heart ${isLiked && 'card__heart_active'}`;
