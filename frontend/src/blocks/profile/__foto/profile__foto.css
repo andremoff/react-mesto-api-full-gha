@@ -5,7 +5,7 @@
   margin: 0;
   position: relative;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   color: transparent;
 }
 

@@ -4,6 +4,8 @@ import { CurrentUserContext } from '../components/contexts/CurrentUserContext';
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
+  console.log('currentUser:', currentUser, 'card owner:', card.owner);
+
   // Определяем владельца карточки
   const isOwn = card?.owner?._id === currentUser?._id;
 
