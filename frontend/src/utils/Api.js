@@ -66,6 +66,15 @@ class Api {
       .then(this._checkResponse);
   }
 
+  // Удаляем карточку
+  deleteCard(cardId) {
+    return fetch(`${this._mainUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
+
   // Меняем статус лайка
   changeLikeCardStatus(cardId, isLiked) {
     const method = isLiked ? 'DELETE' : 'PUT';
