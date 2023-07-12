@@ -5,13 +5,13 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
   // Определяем владельца карточки
-  const isOwn = card?.owner === currentUser?._id;
+  const isOwn = card.owner === currentUser._id;
 
   // Определяем лайк у карточки текущего пользователя
-  const isLiked = card?.likes.some((i) => i === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
 
   // Кнопка лайка
-  const cardLikeButton = `card__heart ${isLiked && 'card__heart_active'}`;
+  const cardLikeButton = `card__heart ${isLiked ? 'card__heart_active' : ''}`;
 
   // Обработчик открытия изображения
   function handleClick() {
@@ -30,9 +30,9 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
   return (
     <li className="card">
-      <img className="card__foto" src={card?.link} alt={card?.name} onClick={handleClick} />
+      <img className="card__foto" src={card.link} alt={card?.name} onClick={handleClick} />
       <div className="card__caption">
-        <h2 className="card__title">{card?.name}</h2>
+        <h2 className="card__title">{card.name}</h2>
         <div className="card__heart-block">
           <button type="button" className={cardLikeButton} aria-label="лайк" onClick={handleLikeClick}></button>
           <span className="card__hearts-counter">{card?.likes.length}</span>
