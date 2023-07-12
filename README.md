@@ -1,3 +1,5 @@
+![image](https://github.com/andremoff/react-mesto-auth/assets/117744283/b689dcf9-7713-42ba-8637-8d3c8f483299)
+
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
 # react-mesto-api-full
