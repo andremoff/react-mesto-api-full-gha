@@ -77,16 +77,16 @@ class Api {
   }
 
   // Меняем статус лайка
-  changeLikeCardStatus(id, isLiked) {
+  changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return fetch(`${this._url}/cards/${id}/likes`, {
+      return fetch(`${this._mainUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._headers,
         credentials: 'include'
       })
         .then(this._checkResponse);
     } else {
-      return fetch(`${this._url}/cards/${id}/likes`, {
+      return fetch(`${this._mainUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
         headers: this._headers,
         credentials: 'include'
