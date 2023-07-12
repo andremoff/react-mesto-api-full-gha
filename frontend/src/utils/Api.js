@@ -70,7 +70,8 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._mainUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: this._headers,
+      credentials: 'include'
     })
       .then(this._checkResponse);
   }
